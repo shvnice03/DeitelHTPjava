@@ -45,7 +45,7 @@ Command   Meaning
 9         End of data (sentinel)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
-
+[NOTE: the turtle is facing south with the pen up at the beginning]
 */
 
 import javax.swing.*;
@@ -59,23 +59,29 @@ public class TurtleGraphics{
     }
 }
 
-// class that represents the turtle
-class Turtle extends JFrame{
+// class that represents the whole game
+class Game extends JFrame{
+
+    private JTextField inputCommand; // JTextField to input all commands; always sets back the textfield to empty 
+    private BoardPaintLine board; // the board to output everything the turtle draws
+
+
     
-}
+    // private class that paints the line drawn by the turtle & represents the board
+    private class BoardPaintLine extends JPanel{
+        public void paintComponent(Graphics g){
 
-// Class that paints the line drawn by the turtle & represents the board
-class BoardPaintLine extends JPanel{
+        }
+    }
 
-}
-
-// Class that starts the whole game
-class Game{
-
+    // private class point that represents the turtle and where the point is at
+    private class Point{
+        
+    }
 }
 
 // Class that represents the player
-class Player{
-
-}
+//class Player{
+//
+//}
 
