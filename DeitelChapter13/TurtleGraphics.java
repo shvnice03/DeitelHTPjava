@@ -71,17 +71,11 @@ class Game extends JFrame{
     private class BoardPaintLine extends JPanel{
         public void paintComponent(Graphics g){
 
+            
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.draw(Line2D.Double(1,1,1,1));
+
         }
     }
-
-    // private class point that represents the turtle and where the point is at
-    private class Point{
-        
-    }
 }
-
-// Class that represents the player
-//class Player{
-//
-//}
-
