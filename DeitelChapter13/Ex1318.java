@@ -37,6 +37,8 @@ class RandomLines2 extends JPanel
        
 
         
+
+        delay(20);
         int colorSelecter = 0 + rand.nextInt(6);
         double point1x = 50 + rand.nextInt(200);
         double point1y = 50 + rand.nextInt(200);
@@ -45,7 +47,9 @@ class RandomLines2 extends JPanel
         g2d.setStroke(new BasicStroke(1f));
         g2d.setColor(colors[colorSelecter]);
         g2d.draw(new Line2D.Double(point1x,point1y,point2x,point2y));
-        delay(10);
+        repaint();
+
+        
 
        
     }
