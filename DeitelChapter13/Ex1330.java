@@ -1,9 +1,7 @@
 /**
-
-13.28 (Selecting Shapes) Write an application that allows the user to select a shape from a JCombo- Box and draws it 
-20 times with random locations and dimensions in method paintComponent. The first item in the JComboBox should be the default shape 
-that is displayed the first time paintComponent is called.
-
+ * 
+ * 13.30 (JColorChooser Dialog) Modify Exercise 13.28 to allow the user to select the color in which shapes should be drawn from a JColorChooser dialog.
+ * 
 */
 
 import java.awt.event.*;
@@ -12,28 +10,30 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.geom.*;
 
-public class Ex1328{
+public class Ex1330{
     public static void main(String[] args){
-        SelectingShape SelectShape = new SelectingShape();
-        SelectShape.setSize(1000,300);
-        SelectShape.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SelectShape.setVisible(true);
+        JColSelectingShape drawShapes = new JColSelectingShape();
+        drawShapes.setVisible(true);
+        drawShapes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        drawShapes.setSize(1052, 810);
     }
 }
 
-class SelectingShape extends JFrame{
+class JColSelectingShape extends JFrame{
 
     private Random random;  // output random numbers to draw shapes in random locations and sizes 
     private JComboBox<String> chooseShape;  // JComboBox: chooseShape to choose the shape 
-    private JTextField instructions;
+    private JTextField instructions; // to output what user has to do
     private String[] shapes = {"Rectangle" , "Circle"};  // shapes array to store the names displayed in the JComboBox
-    private int chosenShape;
+    private int chosenShape;  
     private GridBagLayout layout;
     private final JPanel holder;
     private GridBagConstraints cell;
     private ShapeDrawer drawing;
+    private JColorChooser chooser;
 
-    public SelectingShape(){
+
+    public JColSelectingShape(){
 
         random = new Random();
         chooseShape = new JComboBox<String>(shapes);
@@ -47,6 +47,8 @@ class SelectingShape extends JFrame{
         instructions = new JTextField("Choose a shape from the list below. It will be drawn twenty times at different locations & in different dimensions");
         chooseShape.addItemListener(ehm);
         instructions.setEditable(false);
+        chooser = new JColorChooser();
+
 
         // organize GUI
         cell.gridx = 0;
@@ -62,14 +64,21 @@ class SelectingShape extends JFrame{
         drawing.setVisible(true);
         drawing.setOpaque(true);
         drawing.setBackground(Color.BLACK);
-        drawing.setPreferredSize(new Dimension(200,200));
+        drawing.setPreferredSize(new Dimension(300,750));
         cell.gridwidth = 4;
-        cell.gridheight = 4;
+        cell.gridheight = 5;
         cell.fill = GridBagConstraints.HORIZONTAL;
         cell.fill = GridBagConstraints.VERTICAL;
         cell.gridx = 4;
         cell.gridy = 0;
         holder.add(drawing, cell);
+        cell.gridx = 0;
+        cell.gridy = 3;
+        cell.gridwidth = 2;
+        cell.gridheight = 2;
+        cell.fill = GridBagConstraints.HORIZONTAL;
+        cell.fill = GridBagConstraints.VERTICAL;
+        holder.add(chooser, cell);
 
         add(holder);
     }
@@ -104,14 +113,14 @@ class SelectingShape extends JFrame{
 
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.WHITE);
+            g2d.setColor(chooser.getColor());
 
             if(shapes[getChosenShape()] == "Rectangle"){
 
                 for(int i = 0; i < 20; i++){
                     
-                    int locationX = 20 + random.nextInt(100);
-                    int locationY = 20 + random.nextInt(120);
+                    int locationX = 20 + random.nextInt(300);
+                    int locationY = 20 + random.nextInt(750);
                     int width = 10 + random.nextInt(100);
                     int height = 10 + random.nextInt(100);
                     g2d.draw(new Rectangle2D.Double(locationX, locationY, width, height));
@@ -124,8 +133,8 @@ class SelectingShape extends JFrame{
 
                 for(int i = 0; i < 20; i++){
 
-                    int locationX = 1 + random.nextInt(100);
-                    int locationY = 1 + random.nextInt(120);
+                    int locationX = 1 + random.nextInt(300);
+                    int locationY = 1 + random.nextInt(750);
                     int width = 10 + random.nextInt(100);
                     int height = width;
                     g2d.draw(new Ellipse2D.Double(locationX, locationY, width, height));

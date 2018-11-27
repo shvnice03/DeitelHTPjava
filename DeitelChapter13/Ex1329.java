@@ -1,8 +1,7 @@
 /**
-
-13.28 (Selecting Shapes) Write an application that allows the user to select a shape from a JCombo- Box and draws it 
-20 times with random locations and dimensions in method paintComponent. The first item in the JComboBox should be the default shape 
-that is displayed the first time paintComponent is called.
+ 
+ 13.29 (Random Colors) Modify Exercise 13.28 to draw each of the 20 randomly sized shapes in a randomly selected color. 
+ Use all 13 predefined Color objects in an array of Colors.
 
 */
 
@@ -12,28 +11,28 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.geom.*;
 
-public class Ex1328{
+public class Ex1329{
     public static void main(String[] args){
-        SelectingShape SelectShape = new SelectingShape();
-        SelectShape.setSize(1000,300);
-        SelectShape.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SelectShape.setVisible(true);
+        RandColSelectingShape drawShapes = new RandColSelectingShape();
+        drawShapes.setVisible(true);
+        drawShapes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        drawShapes.setSize(1000, 300);
     }
 }
 
-class SelectingShape extends JFrame{
+class RandColSelectingShape extends JFrame{
 
     private Random random;  // output random numbers to draw shapes in random locations and sizes 
     private JComboBox<String> chooseShape;  // JComboBox: chooseShape to choose the shape 
-    private JTextField instructions;
+    private JTextField instructions; // to output what user has to do
     private String[] shapes = {"Rectangle" , "Circle"};  // shapes array to store the names displayed in the JComboBox
-    private int chosenShape;
+    private int chosenShape;  
     private GridBagLayout layout;
     private final JPanel holder;
     private GridBagConstraints cell;
     private ShapeDrawer drawing;
 
-    public SelectingShape(){
+    public RandColSelectingShape(){
 
         random = new Random();
         chooseShape = new JComboBox<String>(shapes);
@@ -104,7 +103,9 @@ class SelectingShape extends JFrame{
 
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.WHITE);
+            int color = random.nextInt(12);
+            Color[] colors = {Color.BLACK, Color.BLUE, Color.CYAN , Color.DARK_GRAY, Color.GRAY , Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.WHITE};
+            g2d.setColor(colors[color]);
 
             if(shapes[getChosenShape()] == "Rectangle"){
 
