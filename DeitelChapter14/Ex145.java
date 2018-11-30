@@ -34,55 +34,26 @@ public class Ex145{
 
         for(int i = 1; i <= 20; i++){
 
-            randomChooser1 = random.nextInt(4);
-            randomChooser2 = random.nextInt(4);
-            randomChooser3 = random.nextInt(4);
-            randomChooser4 = random.nextInt(4);
+            buffer.delete(0, buffer.length());
+            buffer.append(articleArray[random.nextInt(4)])
+                  .append(" ")
+                  .append(nounArray[random.nextInt(4)])
+                  .append(" ")
+                  .append(verbArray[random.nextInt(4)])
+                  .append(" ")
+                  .append(prepositionArray[random.nextInt(4)])
+                  .append(" ")
+                  .append(articleArray[random.nextInt(4)])
+                  .append(" ")
+                  .append(nounArray[random.nextInt(4)])
+                  .append(".");            
 
+            buffer.setCharAt(0, Character.toUpperCase(buffer.charAt(0)));
+            System.out.println(buffer.toString());
 
-            while(count < 7){
-    
-                if(count == 1 || count == 5){
-    
-                    buffer.append(articleArray[randomChooser1]);
-                    buffer.append(" ");
-    
-                }
-    
-                if(count == 2 || count == 6){
-    
-                    buffer.append(nounArray[randomChooser2]);
-                    
-                    if(count == 2){
-                        buffer.append(" ");
-                    }
-    
-                    if(count == 6){
-                        buffer.append(".");
-                    }
-    
-                }
-    
-                if(count == 3){
-    
-                    buffer.append(verbArray[randomChooser3]);
-                    buffer.append(" ");
-    
-                }
-    
-                if(count == 4){
-    
-                    buffer.append(prepositionArray[randomChooser4]);
-                    buffer.append(" ");
-    
-                }
-
-                count++;
-                
+            
             }
 
-            System.out.println(buffer.toString());
 
         }
     }
-}
