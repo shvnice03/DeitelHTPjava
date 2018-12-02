@@ -34,6 +34,7 @@ public class Ex145{
 
         for(int i = 1; i <= 20; i++){
 
+            System.out.println();
             buffer.delete(0, buffer.length());
             buffer.append(articleArray[random.nextInt(4)])
                   .append(" ")
@@ -50,6 +51,7 @@ public class Ex145{
 
             buffer.setCharAt(0, Character.toUpperCase(buffer.charAt(0)));
             System.out.println(buffer.toString());
+            System.out.println();
 
             
             }
